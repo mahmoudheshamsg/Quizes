@@ -23,8 +23,9 @@ func main() {
 		fmt.Println("Error reading CSV:", err)
 		return
 	}
-
+	correct := 0
 	l := len(record)
+	// Iterate over all the CSV enteries
 	for i := 0; i < l; i++ {
 		fmt.Println(record[i][0])
 		rans, e := strconv.Atoi(record[i][1])
@@ -33,11 +34,11 @@ func main() {
 		}
 		var ans int
 		fmt.Scan(&ans)
+		// Increment the counter for each correct answer
 		if ans == rans {
-			fmt.Println("Right")
-		} else {
-			fmt.Println("Wrong")
+			correct++
 		}
 	}
+	fmt.Println(correct)
 
 }
