@@ -2,14 +2,19 @@ package main
 
 import (
 	"encoding/csv"
+	"flag"
 	"fmt"
 	"os"
 	"strconv"
 )
 
 func main() {
+	csvFileName := flag.String("csv", "problems.csv", "csv file")
+	limit := flag.Int("limit", 30, "time limit for the quiz")
+	flag.Parse()
+	_ = limit
 	// Open the CSV file containing quiz questions and answers
-	file, err := os.Open("./problems.csv")
+	file, err := os.Open(*csvFileName)
 	if err != nil {
 		// Handle error (e.g., file not found or permission issues)
 		fmt.Println("Error opening file:", err)
@@ -23,6 +28,7 @@ func main() {
 		fmt.Println("Error reading CSV:", err)
 		return
 	}
+
 	correct := 0
 	l := len(record)
 	// Iterate over all the CSV enteries
